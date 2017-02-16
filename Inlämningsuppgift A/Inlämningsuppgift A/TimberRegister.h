@@ -4,8 +4,11 @@
 #include<string>
 #include"Timber.h"
 #include<fstream> //////////
+#include<iostream>
 
 using namespace std;
+
+
 
 class TimberRegister
 {
@@ -17,12 +20,16 @@ private:
 public:
 	TimberRegister();
 	~TimberRegister();
-	bool addToStock(int pricePerMeter, int width, int hight);
+	bool addToStock(int amountM, int pricePerMeter, int width, int hight);
+	bool removeFromStock(int amountM, int pricePerMeter, int width, int hight);
+	bool changeStock(int amountM, int pricePerMeter, int width, int hight, int amoN, int priN, int choicechoice);
 
 	void expand();
+	void showSpecificStock(int amount);
 	void showStock();
-	void readFile();
-	void writeToFile();
+	void showStockValue();
+	void readFromFile(string fileName);
+	void writeToFile(string filename);
 };
 
 #endif // !TIMBER_REGISTER_H

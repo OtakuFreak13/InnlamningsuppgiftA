@@ -35,5 +35,8 @@
     <ClInclude Include="TimberRegister.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TimberRegisterSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
