@@ -8,12 +8,12 @@ using namespace std;
 class Shape
 {
 private:
-	int hight;
+	float hight;
 public:
 	Shape();
-	Shape(int hight);
+	Shape(float hight);
 	virtual ~Shape();
-	int getHight()const;
+	float getHight()const;
 	string toString();
 	virtual string toStringSpecific() = 0;
 };

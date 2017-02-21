@@ -4,14 +4,16 @@ class Box :
 	public Shape
 {
 private:
-	int width;
-	int lenght;
-	int volume;
+	float width;
+	float lenght;
+	float volume;
 public:
 	Box();
-	Box(int hight, int width, int length);
+	Box(float hight, float width, float length);
 	~Box();
-	string toString();
-	string toStringSpecific()
+	string toStringSpecific();
+	float getWidth();
+	float getLenght();
+	float getVolume();
 };
 

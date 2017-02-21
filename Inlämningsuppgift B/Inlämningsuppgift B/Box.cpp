@@ -7,7 +7,7 @@ Box::Box()
 
 }
 
-Box::Box(int hight, int width, int length) : Shape(hight)
+Box::Box(float hight, float width, float length) : Shape(hight)
 {
 	this->width = width;
 	this->lenght = length;
@@ -18,7 +18,22 @@ Box::~Box()
 
 }
 
-string Box::toString()
+string Box::toStringSpecific()
 {
-	return string();
+	return "This is a box";
+}
+
+float Box::getWidth()
+{
+	return this->width;
+}
+
+float Box::getLenght()
+{
+	return this->lenght;
+}
+
+float Box::getVolume()
+{
+	return this->volume;
 }

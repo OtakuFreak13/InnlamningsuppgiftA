@@ -7,7 +7,7 @@ Shape::Shape()
 
 }
 
-Shape::Shape(int hight)
+Shape::Shape(float hight)
 {
 	this->hight = hight;
 }
@@ -18,7 +18,7 @@ Shape::~Shape()
 
 }
 
-int Shape::getHight()const
+float Shape::getHight()const
 {
 
 
@@ -27,7 +27,7 @@ int Shape::getHight()const
 
 string Shape::toString()
 {
+	
 
-
-	return string();
+	return this->toStringSpecific();
 }
