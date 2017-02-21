@@ -1,6 +1,6 @@
 #include "Cone.h"
 
-
+# define M_PI           3.14159265358979323846  
 
 
 Cone::Cone() : Shape(-1) // hight = 0 <- du har inte definerat hight... 

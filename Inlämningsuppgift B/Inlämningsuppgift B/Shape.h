@@ -11,7 +11,7 @@ private:
 	float hight;
 public:
 	Shape();
-	Shape(float hight);
+	Shape(float hight = -1);
 	virtual ~Shape();
 	float getHight()const;
 	string toString();

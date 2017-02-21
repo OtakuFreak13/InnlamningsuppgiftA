@@ -1,5 +1,8 @@
-#pragma once
+#ifndef BOX_H
+#define BOX_H
+
 #include "Shape.h"
+
 class Box :
 	public Shape
 {
@@ -9,7 +12,7 @@ private:
 	float volume;
 public:
 	Box();
-	Box(float hight, float width, float length);
+	Box(float hight = -1, float width = -1, float length = -1);
 	~Box();
 	string toStringSpecific();
 	float getWidth();
@@ -17,3 +20,5 @@ public:
 	float getVolume();
 };
 
+
+#endif // !BOX_H

@@ -2,9 +2,10 @@
 
 
 
-Box::Box()
+Box::Box() : Shape(-1)
 {
-
+	this->width = -1;
+	this->lenght = -1;
 }
 
 Box::Box(float hight, float width, float length) : Shape(hight)

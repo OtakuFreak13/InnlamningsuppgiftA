@@ -1,12 +1,15 @@
-#pragma once
+#ifndef CONE_H
+#define CONE_H
+
+
 #include "Shape.h"
-# define M_PI           3.14159265358979323846  
+
 class Cone :
 	public Shape
 {
 private:
-	float radius; // Bör vara float
-	float volume;	// bäör vara float 
+	float radius; 
+	float volume;
 public:
 	Cone(); // <- onödig kan använda nedre
 	Cone(float hight = -1, float radius = -1); 
@@ -21,3 +24,6 @@ public:
 	
 };
 
+
+
+#endif // !CONE_H
