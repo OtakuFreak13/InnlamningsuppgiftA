@@ -7,6 +7,11 @@ Shape::Shape()
 
 }
 
+Shape::Shape(int hight)
+{
+	this->hight = hight;
+}
+
 
 Shape::~Shape()
 {

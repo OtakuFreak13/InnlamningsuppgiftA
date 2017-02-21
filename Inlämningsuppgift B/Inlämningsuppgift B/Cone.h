@@ -10,5 +10,6 @@ public:
 	Cone();
 	~Cone();
 	string toString();
+	string toStringSpecific();
 };
 

@@ -9,7 +9,9 @@ private:
 	int volume;
 public:
 	Box();
-	Box(int width,int length) : shape(int hight);
+	Box(int hight, int width, int length);
 	~Box();
+	string toString();
+	string toStringSpecific()
 };
 

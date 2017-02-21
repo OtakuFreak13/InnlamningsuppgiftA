@@ -11,9 +11,11 @@ private:
 	int hight;
 public:
 	Shape();
+	Shape(int hight);
 	virtual ~Shape();
 	int getHight()const;
-	virtual string toString() = 0;
+	string toString();
+	virtual string toStringSpecific() = 0;
 };
 
 
