@@ -11,13 +11,18 @@ private:
 	float lenght;
 	float volume;
 public:
-	Box();
+	//Box();
 	Box(float hight = -1, float width = -1, float length = -1);
 	~Box();
+
+	Box& operator=(Box& orgObj);
 	string toStringSpecific();
-	float getWidth();
-	float getLenght();
-	float getVolume();
+	float getWidth()const;
+	float getLenght()const;
+	float getVolume()const;
+	void setWidth(int width);
+	void setLenght(int lenght);
+
 };
 
 

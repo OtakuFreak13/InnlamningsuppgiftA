@@ -10,12 +10,14 @@ class Shape
 private:
 	float hight;
 public:
-	Shape();
+	//Shape();
 	Shape(float hight = -1);
 	virtual ~Shape();
+	Shape& operator=(Shape& orgObj);
 	float getHight()const;
 	string toString();
 	virtual string toStringSpecific() = 0;
+	Shape& operator==(Shape& orgObj);
 };
 
 

@@ -170,7 +170,7 @@ void TimberRegister::readFromFile(string fileName)
 	in.open(fileName);
 	int stockAmount = 0;
 	in >> stockAmount;
-	in.ignore();
+	in.ignore();//TODO stäng dem
 }
 
 void TimberRegister::writeToFile(string filename)
@@ -185,6 +185,6 @@ void TimberRegister::writeToFile(string filename)
 		out << stock[i]->getPricePerMeter() << endl;
 		out << stock[i]->getHight() << endl;
 		out << stock[i]->getWidth() << endl;
-
+		//TODO stäng dem
 	}
 }

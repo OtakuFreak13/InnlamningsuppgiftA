@@ -1,12 +1,12 @@
 #include "Cone.h"
 
-# define M_PI           3.14159265358979323846  
+#define M_PI           3.14159265358979323846  
 
 
-Cone::Cone() : Shape(-1) // hight = 0 <- du har inte definerat hight... 
-{						//Shape konstruktorn tar emot height; så länge vi skickar med något till den så kommer det agera som height...
-	this->radius = -1;
-}
+//Cone::Cone() : Shape(-1) // hight = 0 <- du har inte definerat hight... 
+//{						//Shape konstruktorn tar emot height; så länge vi skickar med något till den så kommer det agera som height...
+//	this->radius = -1;
+//}
 
 Cone::Cone(float hight, float radius) :Shape(hight)
 {
@@ -24,15 +24,24 @@ Cone::~Cone()
 
 string Cone::toStringSpecific()
 {
-	return "This is a Cone";
+	
+	return "\nRadius: " + to_string(this->radius)+"\nVolume: "+ to_string(this->volume)+"\n";
 }
 
-float Cone::getRadius()
+float Cone::getRadius()const
 {
 	return this->radius;
 }
 
-float Cone::getVolume()
+Cone & Cone::operator=(Cone & orgObj)
+{
+	this->radius = orgObj.radius;
+	this->volume = orgObj.volume;
+
+	return *this;
+}
+
+float Cone::getVolume()const
 {
 	return this->volume;
 }

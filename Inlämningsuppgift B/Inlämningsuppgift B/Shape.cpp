@@ -2,10 +2,10 @@
 
 
 
-Shape::Shape()
-{
-
-}
+//Shape::Shape()
+//{
+//
+//}
 
 Shape::Shape(float hight)
 {
@@ -18,16 +18,26 @@ Shape::~Shape()
 
 }
 
+Shape & Shape::operator=(Shape & orgObj)
+{
+	this->hight = orgObj.hight;
+	return *this;
+}
+
 float Shape::getHight()const
 {
 
 
-	return 0;
+	return this->hight;
 }
 
 string Shape::toString()
 {
-	
+	return "Hight: "+to_string(this->hight) + this->toStringSpecific();
+}
 
-	return this->toStringSpecific();
+Shape & Shape::operator==(Shape & orgObj)
+{
+	this->hight == orgObj.hight;
+	return *this;
 }

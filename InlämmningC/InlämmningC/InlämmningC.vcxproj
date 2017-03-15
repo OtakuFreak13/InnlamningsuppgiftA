@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{40A07EA2-472B-494B-AEB4-EA8EC9AFA014}</ProjectGuid>
+    <ProjectGuid>{7AB3EA7B-88B8-4E50-BE09-B7C103CCCBF7}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>InlämningsuppgiftB</RootNamespace>
+    <RootNamespace>InlämmningC</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -142,21 +142,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Box.cpp" />
-    <ClCompile Include="Cone.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Shape.cpp" />
-    <ClCompile Include="ShapeRegister.cpp" />
-    <ClCompile Include="ShapeRegisterSystem.cpp" />
-    <ClCompile Include="testShapeRegister.cpp" />
+    <ClCompile Include="test.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Box.h" />
-    <ClInclude Include="Cone.h" />
-    <ClInclude Include="Shape.h" />
-    <ClInclude Include="ShapeRegister.h" />
-    <ClInclude Include="ShapeRegisterSystem.h" />
-    <ClInclude Include="testShapeRegister.h" />
+    <ClInclude Include="Test.h" />
+    <ClInclude Include="IQueue.h" />
+    <ClInclude Include="Queue.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

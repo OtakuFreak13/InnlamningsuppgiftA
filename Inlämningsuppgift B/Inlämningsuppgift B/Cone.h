@@ -8,20 +8,21 @@ class Cone :
 	public Shape
 {
 private:
-	float radius; 
+	float radius;
 	float volume;
 public:
-	Cone(); // <- onödig kan använda nedre
-	Cone(float hight = -1, float radius = -1); 
+	//Cone(); // <- onödig kan använda nedre
+	Cone(float hight = -1, float radius = -1);
 	//Cone(int hight, int radius);
-	~Cone();	
-	
-	float getVolume();
-	float getRadius();
+	~Cone();
+
+	Cone& operator=(Cone& orgObj);
+	float getVolume() const;
+	float getRadius() const;
 	void setRadius(float radius);
 
 	string toStringSpecific();
-	
+
 };
 
 
