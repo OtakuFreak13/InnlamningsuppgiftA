@@ -9,19 +9,18 @@ class Box :
 private:
 	float width;
 	float lenght;
-	float volume;
 public:
 	//Box();
 	Box(float hight = -1, float width = -1, float length = -1);
 	~Box();
 
-	Box& operator=(Box& orgObj);
-	string toStringSpecific();
+	Box& operator=(const Box& orgObj);
+	string toStringSpecific()const;
 	float getWidth()const;
 	float getLenght()const;
-	float getVolume()const;
 	void setWidth(int width);
 	void setLenght(int lenght);
+	float volume()const;
 
 };
 

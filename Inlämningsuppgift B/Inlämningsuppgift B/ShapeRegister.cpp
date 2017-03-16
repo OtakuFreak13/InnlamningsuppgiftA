@@ -47,11 +47,13 @@ ShapeRegister::ShapeRegister(const ShapeRegister & orgObj)
 		if (aConePtr != nullptr)
 		{
 			this->shapes[i] = new Cone(*aConePtr);
+			//*this->shapes[i] = *aConePtr;
 		}
 		else
 		{
 			aBoxPtr = dynamic_cast<Box*>(orgObj.shapes[i]);
 			this->shapes[i] = new Box(*aBoxPtr);
+			//*this->shapes[i] = *aBoxPtr;
 		}
 	}
 }
@@ -68,21 +70,14 @@ ShapeRegister::~ShapeRegister()
 
 bool ShapeRegister::addCone(float hight, float radius)
 {
-	bool exists = false;
+	bool exists = checkUniq(hight);
 
-	if (this->capacity == this->amountOfShapes)
+	if (this->capacity == this->amountOfShapes && !exists)
 	{
 		expand();
 	}
 
-	for (int i = 0; i < this->amountOfShapes; i++)
-	{
-		if (this->shapes[i]->getHight() == hight)//kolla efter dubletter
-		{
-			exists = true;
-		}
-	}
-	if (exists == false)
+	if (!exists)
 	{
 		this->shapes[this->amountOfShapes++] = new Cone(hight, radius);
 	}
@@ -92,46 +87,46 @@ bool ShapeRegister::addCone(float hight, float radius)
 
 bool ShapeRegister::addBox(float hight, float width, float lenght)
 {
-	bool exists = false;
+	bool exists = checkUniq(hight);
 
-	if (this->capacity == this->amountOfShapes)
-	{
-		expand();
-	}
 
-	for (int i = 0; i < this->amountOfShapes; i++)
+	if (!exists)
 	{
-		if (this->shapes[i]->getHight() == hight)
+
+		if (this->capacity == this->amountOfShapes && !exists)
 		{
-			exists = true;
+			expand();
+		}
+
+		if (!exists)
+		{
+			this->shapes[this->amountOfShapes++] = new Box(hight, width, lenght);
 		}
 	}
-	if (exists == false)
-	{
-		this->shapes[this->amountOfShapes++] = new Box(hight, width, lenght);
-	}
-
-	return !exists;
+	return exists;
 }
 
 bool ShapeRegister::removeShape(float hight)
 {
 	bool success = false;
-	for (int i = 0; i < this->amountOfShapes; i++)
+	if (checkUniq(hight))
 	{
-		if (shapes[i]->getHight() == hight)
+		for (int i = 0; i < this->amountOfShapes; i++)
 		{
-			delete this->shapes[i];
-			this->shapes[i] = this->shapes[amountOfShapes - 1];
-			success = true;
-			this->amountOfShapes--;
+			if (shapes[i]->getHight() == hight)
+			{
+				delete this->shapes[i];
+				this->shapes[i] = this->shapes[amountOfShapes - 1];
+				success = true;
+				this->amountOfShapes--;
+			}
 		}
 	}
 	return success;
 }
 
 
-bool ShapeRegister::getAllShapesAsStrings(string arr[], int capOfArr)
+bool ShapeRegister::getAllShapesAsStrings(string arr[], int capOfArr)const
 {
 	bool filled = false;
 	if (capOfArr >= this->amountOfShapes)
@@ -145,83 +140,102 @@ bool ShapeRegister::getAllShapesAsStrings(string arr[], int capOfArr)
 	return filled;
 }
 
-bool ShapeRegister::getAllConesAsStrings(string arr[], int capOfArr)
+bool ShapeRegister::getAllConesAsStrings(string arr[], int capOfArr)const
 {
 	bool filled = false;
 	Cone* aConePtr;
-	for (int i = 0; i < this->amountOfShapes; i++)
+	if (capOfArr >= this->amountOfShapes)
 	{
-		aConePtr = dynamic_cast<Cone*>(shapes[i]);
-		if (this->shapes[i] != nullptr)
+		int counter = 0;
+		filled = true;
+		for (int i = 0; i < this->amountOfShapes; i++)
 		{
-			arr[i] = shapes[i]->toString();
-			filled = true;
+			aConePtr = dynamic_cast<Cone*>(shapes[i]);
+			if (aConePtr != nullptr)
+			{
+				arr[counter] = shapes[i]->toString();
+				counter++;
+			}
 		}
 	}
 	return filled;
 }
 
-bool ShapeRegister::getAllBoxesAsStrings(string arr[], int capOfArr)
+bool ShapeRegister::getAllBoxesAsStrings(string arr[], int capOfArr)const
 {
 	bool filled = false;
 	Box* aBoxPtr;
-	for (int i = 0; i < this->amountOfShapes; i++)
+	if (capOfArr >= this->amountOfShapes)
 	{
-		aBoxPtr = dynamic_cast<Box*>(shapes[i]);
-		if (this->shapes[i] != nullptr)
+		filled = true;
+		int counter = 0;
+		for (int i = 0; i < this->amountOfShapes; i++)
 		{
-			arr[i] = shapes[i]->toString();
-			filled = true;
+			aBoxPtr = dynamic_cast<Box*>(shapes[i]);
+			if (aBoxPtr != nullptr)
+			{
+				arr[counter] = shapes[i]->toString();
+				counter++;
+			}
 		}
 	}
 	return filled;
 }
 
-bool ShapeRegister::editACone(float hight, float radius)
+bool ShapeRegister::editACone(float hight, float radius, float newHight)
 {
-	bool exists = false;
-	Cone* aConePtr = nullptr;
-	for (int i = 0; i < this->amountOfShapes; i++)
+	bool exists = this->checkUniq(newHight);
+	if (!exists)
 	{
-		if (this->shapes[i]->getHight() == hight);
+		Cone* aConePtr = nullptr;
+		for (int i = 0; i < this->amountOfShapes; i++)
 		{
-			aConePtr = dynamic_cast<Cone*>(this->shapes[i]);
-			if (aConePtr != nullptr)
+			if (this->shapes[i]->getHight() == hight)
 			{
-				aConePtr->setRadius(radius);
-				exists = true;
+
+				aConePtr = dynamic_cast<Cone*>(this->shapes[i]);
+				if (aConePtr != nullptr)
+				{
+					aConePtr->setRadius(radius);
+					aConePtr->setHight(newHight);
+					exists = true;
+				}
 			}
 		}
 	}
 	return exists;
 }
 
-bool ShapeRegister::editABox(float hight, float width, float length)
+bool ShapeRegister::editABox(float hight, float width, float length, float newHight)
 {
-	bool exists = false;
-	Box* aBoxPtr = nullptr;
-	for (int i = 0; i < this->amountOfShapes; i++)
+	bool exists = this->checkUniq(newHight);
+	if(!exists)
 	{
-		if (this->shapes[i]->getHight() == hight);
+		Box* aBoxPtr = nullptr;
+		for (int i = 0; i < this->amountOfShapes; i++)
 		{
-			aBoxPtr = dynamic_cast<Box*>(this->shapes[i]);
-			if (aBoxPtr != nullptr)
+			if (this->shapes[i]->getHight() == hight)
 			{
-				aBoxPtr->setWidth(width);
-				aBoxPtr->setLenght(length);
-				exists = true;
+				aBoxPtr = dynamic_cast<Box*>(this->shapes[i]);
+				if (aBoxPtr != nullptr)
+				{
+					aBoxPtr->setWidth(width);
+					aBoxPtr->setLenght(length);
+					aBoxPtr->setHight(newHight);
+					exists = true;
+				}
 			}
-		}
+		}	
 	}
 	return exists;
 }
 
-int ShapeRegister::nrOfShapes()
+int ShapeRegister::nrOfShapes()const
 {
 	return this->amountOfShapes;
 }
 
-int ShapeRegister::nrOfCones()
+int ShapeRegister::nrOfCones()const
 {
 	int existingCones = 0;
 	Cone* aConePtr = nullptr;
@@ -236,7 +250,7 @@ int ShapeRegister::nrOfCones()
 	return existingCones;
 }
 
-int ShapeRegister::nrOfBoxes()
+int ShapeRegister::nrOfBoxes()const
 {
 	int existingBoxes = 0;
 	Box* aBoxPtr = nullptr;
@@ -251,11 +265,14 @@ int ShapeRegister::nrOfBoxes()
 	return existingBoxes;
 }
 
-ShapeRegister ShapeRegister::operator=(ShapeRegister orgObj)
+ShapeRegister &ShapeRegister::operator=(const ShapeRegister &orgObj)
 {
 	if (this != &orgObj) {
-
-		delete[] this->shapes; 
+		for (int i = 0; i < this->amountOfShapes;i++) 
+		{
+			delete this->shapes[i];
+		}
+		delete[] this->shapes;
 		this->amountOfShapes = orgObj.amountOfShapes;
 		this->capacity = orgObj.capacity;
 		this->shapes = new Shape*[orgObj.capacity];
@@ -278,5 +295,18 @@ ShapeRegister ShapeRegister::operator=(ShapeRegister orgObj)
 		}
 	}
 	return *this;
+}
+
+bool ShapeRegister::checkUniq(float hight)const
+{
+	bool exists = false;
+	for (int i = 0; i < this->amountOfShapes; i++)
+	{
+		if (this->shapes[i]->getHight() == hight)
+		{
+			exists = true;
+		}
+	}
+	return exists;
 }
 

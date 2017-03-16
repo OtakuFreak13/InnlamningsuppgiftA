@@ -40,7 +40,7 @@ void menu(ShapeRegister *shapes)
 			break;
 
 		case 5:
-			one(shapes);
+			five(shapes);
 			break;
 
 		case 6:
@@ -104,6 +104,7 @@ void three(ShapeRegister *shapes)
 	{
 		cout << list[i] << endl; 
 	}
+	delete[] list;
 }
 
 void four(ShapeRegister *shapes)
@@ -129,6 +130,7 @@ void five(ShapeRegister *shapes)
 	{
 		cout << list[i] << endl;
 	}
+	delete[] list;
 }
 
 void six(ShapeRegister *shapes)
@@ -143,11 +145,14 @@ void seven(ShapeRegister *shapes)
 {
 	float cHight;
 	float cRadius;
+	float cNewHight;
 	cout << "Please input height of the cone you want to edit... ";
 	cin >> cHight; cin.ignore();
 	cout << "Please input new radius of the cone you want to edit... ";
 	cin >> cRadius; cin.ignore();
-	shapes->editACone(cHight, cRadius);
+	cout << "Please input new height of the cone you want to edit... ";
+	cin >> cNewHight; cin.ignore();
+	shapes->editACone(cHight, cRadius, cNewHight);
 }
 
 void eight(ShapeRegister *shapes)
@@ -155,11 +160,14 @@ void eight(ShapeRegister *shapes)
 	float bHight;
 	float bWidth;
 	float bLength;
+	float bNewHight;
 	cout << "Please input height of the box you want to edit... ";
 	cin >> bHight; cin.ignore();
-	cout << "Please input width of the box you want to edit... ";
+	cout << "Please input new width of the box you want to edit... ";
 	cin >> bWidth; cin.ignore();
-	cout << "Please input length of the box you want to edit... ";
+	cout << "Please input new length of the box you want to edit... ";
 	cin >> bLength; cin.ignore();
-	shapes->editABox(bHight, bWidth, bLength);
+	cout << "Please input new height of the box you want to edit... ";
+	cin >> bNewHight; cin.ignore();
+	shapes->editABox(bHight, bWidth, bLength, bNewHight);
 }

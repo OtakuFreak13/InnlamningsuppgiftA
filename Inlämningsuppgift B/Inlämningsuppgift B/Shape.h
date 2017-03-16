@@ -13,11 +13,13 @@ public:
 	//Shape();
 	Shape(float hight = -1);
 	virtual ~Shape();
-	Shape& operator=(Shape& orgObj);
+	Shape& operator=(const Shape& orgObj);
 	float getHight()const;
 	string toString();
-	virtual string toStringSpecific() = 0;
-	Shape& operator==(Shape& orgObj);
+	virtual string toStringSpecific() const = 0;
+	virtual float volume() const = 0;
+	bool operator==(const Shape& orgObj)const;
+	void setHight(float newHight);
 };
 
 

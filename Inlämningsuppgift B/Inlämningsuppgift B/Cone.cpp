@@ -8,10 +8,17 @@
 //	this->radius = -1;
 //}
 
+Cone & Cone::operator=(const Cone & orgObj)
+{
+	Shape::operator=(orgObj);
+
+	this->radius = orgObj.radius;
+	return *this;
+}
+
 Cone::Cone(float hight, float radius) :Shape(hight)
 {
 	this->radius = radius;
-	this->volume = M_PI*radius * radius*hight / 3;
 }
 
 
@@ -22,10 +29,15 @@ Cone::~Cone()
 
 
 
-string Cone::toStringSpecific()
+string Cone::toStringSpecific()const
 {
 	
-	return "\nRadius: " + to_string(this->radius)+"\nVolume: "+ to_string(this->volume)+"\n";
+	return "\nRadius: " + to_string(this->radius)+"\n";
+}
+
+float Cone::volume()const
+{
+	return M_PI*this->radius * this->radius*this->getHight() / 3;
 }
 
 float Cone::getRadius()const
@@ -33,18 +45,6 @@ float Cone::getRadius()const
 	return this->radius;
 }
 
-Cone & Cone::operator=(Cone & orgObj)
-{
-	this->radius = orgObj.radius;
-	this->volume = orgObj.volume;
-
-	return *this;
-}
-
-float Cone::getVolume()const
-{
-	return this->volume;
-}
 
 
 void Cone::setRadius(float radius)

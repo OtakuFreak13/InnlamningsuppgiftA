@@ -9,19 +9,19 @@ class Cone :
 {
 private:
 	float radius;
-	float volume;
 public:
 	//Cone(); // <- onödig kan använda nedre
 	Cone(float hight = -1, float radius = -1);
 	//Cone(int hight, int radius);
 	~Cone();
 
-	Cone& operator=(Cone& orgObj);
-	float getVolume() const;
+	Cone& operator=(const Cone& orgObj);
 	float getRadius() const;
 	void setRadius(float radius);
 
-	string toStringSpecific();
+	string toStringSpecific()const;
+
+	float volume()const;
 
 };
 

@@ -18,7 +18,7 @@ Shape::~Shape()
 
 }
 
-Shape & Shape::operator=(Shape & orgObj)
+Shape & Shape::operator=(const Shape & orgObj)
 {
 	this->hight = orgObj.hight;
 	return *this;
@@ -33,11 +33,15 @@ float Shape::getHight()const
 
 string Shape::toString()
 {
-	return "Hight: "+to_string(this->hight) + this->toStringSpecific();
+	return "Hight: "+to_string(this->hight) + "\nVolume: " + to_string(this->volume()) + this->toStringSpecific();
 }
 
-Shape & Shape::operator==(Shape & orgObj)
+bool Shape::operator==(const Shape & orgObj)const
 {
-	this->hight == orgObj.hight;
-	return *this;
+	return this->hight == orgObj.hight;
+}
+
+void Shape::setHight(float newHight)
+{
+	this->hight = newHight;
 }

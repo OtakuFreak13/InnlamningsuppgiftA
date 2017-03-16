@@ -12,7 +12,6 @@ Box::Box(float hight, float width, float length) : Shape(hight)
 {
 	this->width = width;
 	this->lenght = length;
-	this->volume = length*hight*width;
 }
 
 Box::~Box()
@@ -20,18 +19,18 @@ Box::~Box()
 
 }
 
-Box & Box::operator=(Box & orgObj)
+Box & Box::operator=(const Box & orgObj)
 {
+	Shape::operator=(orgObj);
 	this->width = orgObj.width;
 	this->lenght = orgObj.lenght;
-	this->volume = orgObj.volume;
 
 	return *this;
 }
 
-string Box::toStringSpecific()
+string Box::toStringSpecific()const
 {
-	return"\nWidth: " + to_string(this->width) + "\nLength: " + to_string(this->lenght) + "\nVolume: " + to_string(this->volume)+ "\n";
+	return"\nWidth: " + to_string(this->width) + "\nLength: " + to_string(this->lenght) + "\n";
 }
 
 float Box::getWidth()const
@@ -44,11 +43,6 @@ float Box::getLenght()const
 	return this->lenght;
 }
 
-float Box::getVolume()const
-{
-	return this->volume;
-}
-
 void Box::setWidth(int width)
 {
 	this->width=width;
@@ -57,6 +51,11 @@ void Box::setWidth(int width)
 void Box::setLenght(int length)
 {
 	this->lenght = length;
+}
+
+float Box::volume()const
+{
+	return this->lenght*this->getHight()*this->width;
 }
 
 

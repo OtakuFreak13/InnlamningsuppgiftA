@@ -14,6 +14,7 @@ private:
 	Shape* *shapes;
 	void initiate(int from = 0);
 	void expand();
+	bool checkUniq(float hight)const;
 public:
 	ShapeRegister(int capacity = 5);
 	ShapeRegister(const ShapeRegister& orgObj);
@@ -21,15 +22,16 @@ public:
 	bool addCone(float hight, float radius);
 	bool addBox(float hight, float width, float lenght);
 	bool removeShape(float hight);
-	bool getAllShapesAsStrings(string arr[], int capOfArr);
-	bool getAllConesAsStrings(string arr[], int capOfArr);
-	bool getAllBoxesAsStrings(string arr[], int capOfArr);
-	bool editACone(float hight,float radius);
-	bool editABox(float hight,float width, float );
-	int nrOfShapes();
-	int nrOfCones();
-	int nrOfBoxes();
-	ShapeRegister operator=(ShapeRegister orgObj);
+	bool getAllShapesAsStrings(string arr[], int capOfArr)const;
+	bool getAllConesAsStrings(string arr[], int capOfArr)const;
+	bool getAllBoxesAsStrings(string arr[], int capOfArr)const;
+	bool editACone(float hight,float radius, float newHight);
+	bool editABox(float hight,float width, float length, float newHeight);
+	int nrOfShapes()const;
+	int nrOfCones()const;
+	int nrOfBoxes()const;
+	ShapeRegister &operator=(const ShapeRegister &orgObj);
+	
 };
 
 
