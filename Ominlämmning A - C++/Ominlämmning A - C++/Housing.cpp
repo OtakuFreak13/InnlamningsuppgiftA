@@ -15,27 +15,36 @@ Housing::Housing(int id, string adress, int rent, string houseType, int livingSp
 
 Housing::~Housing()
 {
-	//delete this;
+	
 }
 
-Housing::Housing(const Housing & origObj)
+Housing::Housing(const Housing & origObj)//Behvövs kanske inte?
 {
-	this->setId(origObj.id);
-	this->setAdress(origObj.adress);
-	this->setRent(origObj.rent);
-	this->setHouseType(origObj.houseType);
-	this->setLivingSpace(origObj.livingSpace);
-	this->setRooms(origObj.rooms);
+	//this->setId(origObj.id);
+	//this->setAdress(origObj.adress);
+	//this->setRent(origObj.rent);
+	//this->setHouseType(origObj.houseType);
+	//this->setLivingSpace(origObj.livingSpace);
+	//this->setRooms(origObj.rooms);
+	this->id = origObj.id;
+	this->adress = origObj.adress;
+	this->rent = origObj.rent;
+	this->houseType = origObj.houseType;
+	this->livingSpace = origObj.livingSpace;
+	this->rooms = origObj.rooms;
 }
 
 Housing& Housing::operator=(const Housing & origObj)
 {
-	this->setId(origObj.id);
-	this->setAdress(origObj.adress);
-	this->setRent(origObj.rent);
-	this->setHouseType(origObj.houseType);
-	this->setLivingSpace(origObj.livingSpace);
-	this->setRooms(origObj.rooms);
+	if (this != &origObj) {
+		this->id = origObj.id;
+		this->adress = origObj.adress;
+		this->rent = origObj.rent;
+		this->houseType = origObj.houseType;
+		this->livingSpace = origObj.livingSpace;
+		this->rooms = origObj.rooms;
+	}
+	
 	return *this;
 }
 
@@ -69,7 +78,7 @@ int Housing::getRooms() const
 	return this->rooms;
 }
 
-void Housing::setId(int id) 
+void Housing::setId(int id)
 {
 	this->id = id;
 }

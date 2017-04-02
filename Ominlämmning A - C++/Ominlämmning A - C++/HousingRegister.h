@@ -17,7 +17,7 @@ public:
 	HousingRegister(const HousingRegister &origObj);
 	HousingRegister& operator=(const HousingRegister &origObj);
 
-	bool addHousing(int id, string adress, int rent, string houseType, int livingSpace, int rooms);//göra om till bool?
+	bool addHousing(int id, string adress, int rent, string houseType, int livingSpace, int rooms);
 	bool removeHousing(int id);
 
 	string toStringSpecific()const;
@@ -25,6 +25,11 @@ public:
 	string showHouseByRent(int maxRent)const;
 	//int findSpecificHousing(string type, int rooms)const;
 	string showSpecificHousing(string type, int rooms)const;
+
+	bool checkId(int id);
+	void changeHousingParameters(int id, int newId, string newAdress, int newRent, string newHouseType, int newLivingSpace, int newRooms);
+	string HousingRegister::readFromFile(string fileName);
+	void HousingRegister::writeToFile(string filename);
 };
 
 

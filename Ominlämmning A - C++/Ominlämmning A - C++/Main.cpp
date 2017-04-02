@@ -1,5 +1,5 @@
 #include"Test.h"
-
+#include"HousingRegisterSystems.h"
 
 int main()
 {
@@ -9,6 +9,9 @@ int main()
 	test();
 	system("pause");
 
+	HousingRegister* housing = new HousingRegister(2);
+	menu(housing);
 
+	delete housing;
 	return 0;
 }

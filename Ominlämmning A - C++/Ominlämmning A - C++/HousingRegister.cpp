@@ -1,4 +1,5 @@
 #include "HousingRegister.h"
+#include<fstream>
 
 
 
@@ -42,7 +43,8 @@ HousingRegister::HousingRegister(const HousingRegister & origObj)
 	this->housing = new Housing*[origObj.cap];
 	for (int i = 0; i < this->elementsInArr; i++)
 	{
-		this->housing[i] = origObj.housing[i];
+		this->housing[i] = new Housing(*origObj.housing[i]);
+		float b = 0;
 	}
 }
 
@@ -56,7 +58,8 @@ HousingRegister& HousingRegister::operator=(const HousingRegister & origObj)
 		Housing* *temp = new Housing*[origObj.cap];
 		for (int i = 0; i < origObj.elementsInArr; i++)
 		{
-			temp[i] = origObj.housing[i];
+			temp[i] = new Housing();
+			*temp[i] = *origObj.housing[i];
 		}
 		this->housing = temp;
 	}
@@ -74,7 +77,7 @@ bool HousingRegister::addHousing(int id, string adress, int rent, string houseTy
 			exists = true;
 		}
 	}
-	if (exists != true)
+	if (!exists)
 	{
 		if (this->elementsInArr == this->cap)
 		{
@@ -103,12 +106,15 @@ bool HousingRegister::removeHousing(int id)
 		{
 			if (i == (this->elementsInArr - 1))
 			{
-				this->housing[i] = new Housing();
+				delete this->housing[i];
+				//this->housing[i] = new Housing();
 			}
 			else
 			{
+				delete this->housing[i];
 				this->housing[i] = this->housing[this->elementsInArr - 1];
-				this->housing[this->elementsInArr - 1] = new Housing();
+				//delete this->housing[this->elementsInArr - 1];
+				//this->housing[this->elementsInArr - 1] = new Housing();
 			}
 			//for (int j = 0; j < i; j++)
 			//{
@@ -122,10 +128,10 @@ bool HousingRegister::removeHousing(int id)
 			//	}
 			//}
 		//delete this->housing[i];
-		this->elementsInArr--;
-		removed = true;
+			this->elementsInArr--;
+			removed = true;
 		}
-		
+
 	}
 	return removed;
 }
@@ -166,4 +172,97 @@ string HousingRegister::showSpecificHousing(string type, int rooms) const
 	}
 
 	return specificHousing;
+}
+
+bool HousingRegister::checkId(int id)
+{
+	bool exists = false;
+	for (int i = 0; i < this->elementsInArr; i++)
+	{
+		if (id == this->housing[i]->getId())
+		{
+			exists = true;
+
+		}
+	}
+	return exists;
+}
+
+void HousingRegister::changeHousingParameters(int id, int newId, string newAdress, int newRent, string newHouseType, int newLivingSpace, int newRooms)
+{
+	for (int i = 0; i < this->elementsInArr; i++)
+	{
+		if (id == this->housing[i]->getId())
+		{
+			this->housing[i]->setId(newId);
+			this->housing[i]->setAdress(newAdress);
+			this->housing[i]->setRent(newRent);
+			this->housing[i]->setHouseType(newHouseType);
+			this->housing[i]->setLivingSpace(newLivingSpace);
+			this->housing[i]->setRooms(newRooms);
+		}
+	}
+
+}
+
+string HousingRegister::readFromFile(string fileName)
+{
+	//bool exists = true;
+	string returnString;
+	ifstream in;
+	in.open(fileName);
+	if (!in)
+	{
+		returnString = "Error";
+	}
+	else
+	{
+		int elementsInArr = 0;
+		in >> elementsInArr;
+		//HousingRegister* temp = new HousingRegister(elementsInArr);
+		int id;
+		string adress;
+		int rent;
+		string housingType;
+		int livingSpace;
+		int rooms;
+		for (int i = 0; i < elementsInArr; i++)
+		{
+
+			in >> id; in.ignore();
+			in >> adress; in.ignore();
+			in >> rent;	in.ignore();
+			in >> housingType; in.ignore();
+			in >> livingSpace; in.ignore();
+			in >> rooms; in.ignore();
+			//temp->housing[i]->setId(id);
+			//temp->housing[i]->setAdress(adress);
+			//temp->housing[i]->setRent(rent);
+			//temp->housing[i]->setHouseType(housingType);
+			//temp->housing[i]->setLivingSpace(livingSpace);
+			//temp->housing[i]->setRooms(rooms);
+			returnString += "\nId: " + to_string(id) + "\nAdress: " + adress + "\nRent per month: " + to_string(rent) + "kr" + "\nType of Housing" + housingType + "\nLiving area: " + to_string(livingSpace) + "m^2" + "\nNumber of rooms: " + to_string(rooms);
+			
+		}
+	}
+	in.close();
+	return returnString;
+}
+
+void HousingRegister::writeToFile(string filename)
+{
+	ofstream out;
+	out.open(filename);
+
+	out << this->elementsInArr << endl;
+	for (int i = 0; i < elementsInArr; i++)
+	{
+		out << this->housing[i]->getId() << endl;
+		out << this->housing[i]->getAdress() << endl;
+		out << this->housing[i]->getRent() << endl;
+		out << this->housing[i]->getHouseType() << endl;
+		out << this->housing[i]->getLivingSpace() << endl;
+		out << this->housing[i]->getRooms() << endl;
+	}
+	out.close();
 }
