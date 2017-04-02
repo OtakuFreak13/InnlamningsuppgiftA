@@ -174,7 +174,7 @@ string HousingRegister::showSpecificHousing(string type, int rooms) const
 	return specificHousing;
 }
 
-bool HousingRegister::checkId(int id)
+bool HousingRegister::checkId(int id)const
 {
 	bool exists = false;
 	for (int i = 0; i < this->elementsInArr; i++)

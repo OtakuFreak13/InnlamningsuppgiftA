@@ -26,7 +26,7 @@ public:
 	//int findSpecificHousing(string type, int rooms)const;
 	string showSpecificHousing(string type, int rooms)const;
 
-	bool checkId(int id);
+	bool checkId(int id)const;
 	void changeHousingParameters(int id, int newId, string newAdress, int newRent, string newHouseType, int newLivingSpace, int newRooms);
 	string HousingRegister::readFromFile(string fileName);
 	void HousingRegister::writeToFile(string filename);
