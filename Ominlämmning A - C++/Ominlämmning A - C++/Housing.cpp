@@ -2,7 +2,7 @@
 
 
 
-Housing::Housing(int id, string adress, int rent, string houseType, int livingSpace, int rooms)
+Housing::Housing(const int id, const string adress, const int rent, const string houseType, const int livingSpace, const int rooms)
 {
 	this->id = id;
 	this->adress = adress;
@@ -78,32 +78,32 @@ int Housing::getRooms() const
 	return this->rooms;
 }
 
-void Housing::setId(int id)
+void Housing::setId(const int id)
 {
 	this->id = id;
 }
 
-void Housing::setAdress(string adress)
+void Housing::setAdress(const string adress)
 {
 	this->adress = adress;
 }
 
-void Housing::setRent(int rent)
+void Housing::setRent(const int rent)
 {
 	this->rent = rent;
 }
 
-void Housing::setHouseType(string houseType)
+void Housing::setHouseType(const string houseType)
 {
 	this->houseType = houseType;
 }
 
-void Housing::setLivingSpace(int livingSpace)
+void Housing::setLivingSpace(const int livingSpace)
 {
 	this->livingSpace = livingSpace;
 }
 
-void Housing::setRooms(int rooms)
+void Housing::setRooms(const int rooms)
 {
 	this->rooms = rooms;
 }

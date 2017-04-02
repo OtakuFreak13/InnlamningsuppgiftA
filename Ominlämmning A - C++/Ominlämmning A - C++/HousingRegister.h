@@ -9,27 +9,27 @@ private:
 	Housing** housing;
 	int cap;
 	int elementsInArr;
-	void expand(int newCap = 5);
+	void expand(const int newCap = 5);
 public:
-	HousingRegister(int cap = 5);
+	HousingRegister(const int cap = 5);
 	~HousingRegister();
 
 	HousingRegister(const HousingRegister &origObj);
 	HousingRegister& operator=(const HousingRegister &origObj);
 
-	bool addHousing(int id, string adress, int rent, string houseType, int livingSpace, int rooms);
-	bool removeHousing(int id);
+	bool addHousing(const int id, const string adress, const int rent, const string houseType, const int livingSpace, const int rooms);
+	bool removeHousing(const int id);
 
 	string toStringSpecific()const;
 	//int checkRent(int maxRent)const;
-	string showHouseByRent(int maxRent)const;
+	string showHouseByRent(const int maxRent)const;
 	//int findSpecificHousing(string type, int rooms)const;
-	string showSpecificHousing(string type, int rooms)const;
+	string showSpecificHousing(const string type, const int rooms)const;
 
-	bool checkId(int id)const;
-	void changeHousingParameters(int id, int newId, string newAdress, int newRent, string newHouseType, int newLivingSpace, int newRooms);
-	string HousingRegister::readFromFile(string fileName);
-	void HousingRegister::writeToFile(string filename);
+	bool checkId(const int id)const;
+	void changeHousingParameters(const int id, const int newId, const string newAdress, const int newRent, const string newHouseType, const int newLivingSpace, const int newRooms);
+	string HousingRegister::readFromFile(const string fileName);
+	void HousingRegister::writeToFile(const string filename);
 };
 
 

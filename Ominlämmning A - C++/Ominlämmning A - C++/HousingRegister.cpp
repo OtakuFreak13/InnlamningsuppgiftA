@@ -3,7 +3,7 @@
 
 
 
-void HousingRegister::expand(int newCap)
+void HousingRegister::expand(const int newCap)
 {
 	this->cap += newCap;
 	Housing* *temp = new Housing*[this->cap];
@@ -15,7 +15,7 @@ void HousingRegister::expand(int newCap)
 	this->housing = temp;
 }
 
-HousingRegister::HousingRegister(int cap)
+HousingRegister::HousingRegister(const int cap)
 {
 	this->cap = cap;
 	this->elementsInArr = 0;
@@ -66,7 +66,7 @@ HousingRegister& HousingRegister::operator=(const HousingRegister & origObj)
 	return *this;
 }
 
-bool HousingRegister::addHousing(int id, string adress, int rent, string houseType, int livingSpace, int rooms)
+bool HousingRegister::addHousing(const int id, const string adress, const int rent, const string houseType, const int livingSpace, const int rooms)
 {
 	bool added = false;
 	bool exists = false;
@@ -96,7 +96,7 @@ bool HousingRegister::addHousing(int id, string adress, int rent, string houseTy
 	return added;
 }
 
-bool HousingRegister::removeHousing(int id)
+bool HousingRegister::removeHousing(const int id)
 {
 	bool removed = false;
 	Housing**temp;
@@ -146,7 +146,7 @@ string HousingRegister::toStringSpecific()const
 	return allHouses;
 }
 
-string HousingRegister::showHouseByRent(int maxRent) const
+string HousingRegister::showHouseByRent(const int maxRent) const
 {
 	string housesByRent;
 	for (int i = 0; i < this->elementsInArr; i++)
@@ -159,7 +159,7 @@ string HousingRegister::showHouseByRent(int maxRent) const
 	return housesByRent;
 }
 
-string HousingRegister::showSpecificHousing(string type, int rooms) const
+string HousingRegister::showSpecificHousing(const string type, const int rooms) const
 {
 	string specificHousing;
 
@@ -174,7 +174,7 @@ string HousingRegister::showSpecificHousing(string type, int rooms) const
 	return specificHousing;
 }
 
-bool HousingRegister::checkId(int id)const
+bool HousingRegister::checkId(const int id)const
 {
 	bool exists = false;
 	for (int i = 0; i < this->elementsInArr; i++)
@@ -188,7 +188,7 @@ bool HousingRegister::checkId(int id)const
 	return exists;
 }
 
-void HousingRegister::changeHousingParameters(int id, int newId, string newAdress, int newRent, string newHouseType, int newLivingSpace, int newRooms)
+void HousingRegister::changeHousingParameters(const int id, const int newId, const string newAdress, const int newRent, const string newHouseType, const int newLivingSpace, const int newRooms)
 {
 	for (int i = 0; i < this->elementsInArr; i++)
 	{
@@ -205,7 +205,7 @@ void HousingRegister::changeHousingParameters(int id, int newId, string newAdres
 
 }
 
-string HousingRegister::readFromFile(string fileName)
+string HousingRegister::readFromFile(const string fileName)
 {
 	//bool exists = true;
 	string returnString;
@@ -249,7 +249,7 @@ string HousingRegister::readFromFile(string fileName)
 	return returnString;
 }
 
-void HousingRegister::writeToFile(string filename)
+void HousingRegister::writeToFile(const string filename)
 {
 	ofstream out;
 	out.open(filename);
