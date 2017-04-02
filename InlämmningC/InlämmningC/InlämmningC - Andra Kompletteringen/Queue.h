@@ -80,7 +80,7 @@ Queue<T>::Queue(const Queue<T>& origObj)//Verkar fungera? Vill gärna veta vad so
 	this->elementsInQueue = origObj.elementsInQueue;
 	this->queue = new T[origObj.capacity];
 
-	for (int i = this->capacity - 1; i >= 0; i--)//Rättade > till >= och satt det till 0
+	for (int i = this->capacity - 1; i >= 0; i--)//Rättade > till >=
 	{
 		this->queue[i] = T(origObj.queue[i]);
 	}
@@ -107,7 +107,7 @@ Queue<T> &Queue<T>::operator=(const Queue<T>& origObj)//ändrade från * till &. A
 		this->elementsInQueue = origObj.elementsInQueue;
 		T* temp = new T[origObj.capacity];
 
-		for (int i = this->capacity - 1; i >= 0; i--)//Rättade > till >= och satt det till 0
+		for (int i = this->capacity - 1; i >= 0; i--)//Rättade > till >=
 		{
 			temp[i] = T(origObj.queue[i]);
 		}

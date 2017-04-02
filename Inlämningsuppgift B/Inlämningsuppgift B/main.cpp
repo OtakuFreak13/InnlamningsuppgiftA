@@ -13,18 +13,16 @@ int main()
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
 
-
+	locale swedish("swedish");
+	locale::global(swedish);
+	
 	ShapeRegister shapes;
 
-	//Cone cone(1, 2);
-	//Cone cone2 = Cone(3,4);
-	////Cone cone3 = cone2; <- FEL
-	//cone = cone2;
-	//
-	//cout << cone.toString() << endl; //<<skicka till test filen
-
 	test2();
-	//menu(&shapes);
+	cout << "Test avklarat, tryck enter för att starta program" << endl;
+	getchar();
+	system("cls");
+	menu(&shapes);
 
 	getchar();
 	return 0;

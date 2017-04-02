@@ -12,7 +12,7 @@ int main()
 
 	test1();//testar int 
 
-	//test2();//testar string
+	test2();//testar string
 
 
 

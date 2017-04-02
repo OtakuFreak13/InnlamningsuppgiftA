@@ -4,7 +4,7 @@ using namespace std;
 
 void test1()
 {
-	//_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
 
 	locale swedish("swedish");
@@ -93,7 +93,7 @@ void test1()
 	myQueue3->enqueue(4);
 	myQueue3->enqueue(5);
 
-	Queue<int> myQueue4(*myQueue3);
+	Queue<int> * myQueue4 =  new Queue<int>(*myQueue3);
 
 	cout << "Skriver ut kö myQueue3... " << endl;
 	for (int i = 5; i > 0; i--)
@@ -112,7 +112,7 @@ void test1()
 	{
 		try
 		{
-			cout << to_string(myQueue4.dequeue()) << endl;
+			cout << to_string(myQueue4->dequeue()) << endl;
 		}
 		catch (char* e)
 		{
@@ -128,8 +128,8 @@ void test1()
 	myQueue5->enqueue(4);
 	myQueue5->enqueue(5);
 
-	Queue<int> myQueue6 = Queue<int>();
-	myQueue6 = *myQueue5;
+	Queue<int> *myQueue6 = new Queue<int>();
+	*myQueue6 = *myQueue5;
 
 	cout << "Skriver ut kö myQueue5... " << endl;
 	for (int i = 5; i > 0; i--)
@@ -148,13 +148,141 @@ void test1()
 	{
 		try
 		{
-			cout << to_string(myQueue6.dequeue()) << endl;
+			cout << to_string(myQueue6->dequeue()) << endl;
 		}
 		catch (char* e)
 		{
 			cout << e << endl;
 		}
 	}
+
+	cout << "Skapar kö med 5 kapacitet och köar upp 5 element." << endl;
+	Queue<int> *myQueue7 = new Queue<int>();
+	myQueue7->enqueue(1);
+	myQueue7->enqueue(2);
+	myQueue7->enqueue(3);
+	myQueue7->enqueue(4);
+	myQueue7->enqueue(5);
+	cout << "Avköar två element och köar tre nya." << endl;
+	try
+	{
+		cout << to_string(myQueue7->dequeue()) << endl;
+		cout << to_string(myQueue7->dequeue()) << endl;
+	}
+	catch (char* e)
+	{
+		cout << e << endl;
+	}
+	
+	myQueue7->enqueue(6);
+	myQueue7->enqueue(7);
+	myQueue7->enqueue(8);
+	cout << "Avköar alla element." << endl;
+	for (int i = 6; i > 0; i--)
+	{
+		try
+		{
+			cout << to_string(myQueue7->dequeue()) << endl;
+		}
+		catch (char* e)
+		{
+			cout << e << endl;
+		}
+	}
+
+	cout << "Lägger in 1 till 3 i kön. " << endl;
+	Queue<int> *myQueue8 = new Queue<int>(3);
+	myQueue8->enqueue(1);
+	myQueue8->enqueue(2);
+	myQueue8->enqueue(3);
+
+	cout << "Dequeue:ar 1" << endl;
+	try
+	{
+		cout << myQueue8->dequeue() << endl;
+	}
+	catch (char* e)
+	{
+		cout << e << endl;
+	}
+	cout << "Testar copy och sen dequeue:ar jag både myqueue8 och myqueue9 som ska visa samma." << endl;
+	Queue<int> myQueue9 = *myQueue8;
+	for (int i = 2; i > 0; i--)
+	{
+		try
+		{
+			cout << to_string(myQueue8->dequeue()) << endl;
+		}
+		catch (char* e)
+		{
+			cout << e << endl;
+		}
+	}
+
+	for (int i = 2; i > 0; i--)
+	{
+		try
+		{
+			cout << to_string(myQueue9.dequeue()) << endl;
+		}
+		catch (char* e)
+		{
+			cout << e << endl;
+		}
+	}
+
+	cout << "Lägger in 1 till 3 i kön. " << endl;
+	Queue<int> *myQueue10 = new Queue<int>(3);
+	myQueue10->enqueue(1);
+	myQueue10->enqueue(2);
+	myQueue10->enqueue(3);
+
+	cout << "Dequeue:ar 1" << endl;
+	try
+	{
+		cout << myQueue10->dequeue() << endl;
+	}
+	catch (char* e)
+	{
+		cout << e << endl;
+	}
+	cout << "Testar tilldelning och sen dequeue:ar jag både myqueue8 och myqueue9 som ska visa samma." << endl;
+	Queue<int> *myQueue11 = new Queue<int>(4);
+	*myQueue11 = *myQueue10;
+	for (int i = 2; i > 0; i--)
+	{
+		try
+		{
+			cout << to_string(myQueue10->dequeue()) << endl;
+		}
+		catch (char* e)
+		{
+			cout << e << endl;
+		}
+	}
+
+	for (int i = 2; i > 0; i--)
+	{
+		try
+		{
+			cout << to_string(myQueue11->dequeue()) << endl;
+		}
+		catch (char* e)
+		{
+			cout << e << endl;
+		}
+	}
+
+	delete myQueue;
+	delete myQueue2;
+	delete myQueue3;
+	delete myQueue4;
+	delete myQueue5;
+	delete myQueue6;
+	delete myQueue7;
+	delete myQueue8;
+	delete myQueue10;
+	delete myQueue11;
 }
 
 void test2()
@@ -248,7 +376,7 @@ void test2()
 	myQueue3->enqueue("D");
 	myQueue3->enqueue("E");
 
-	Queue<string> *myQueue4(myQueue3);
+	Queue<string> *myQueue4 = new Queue<string>(*myQueue3);
 
 	cout << "Skriver ut kö myQueue3... " << endl;
 	for (int i = 5; i > 0; i--)
@@ -284,7 +412,7 @@ void test2()
 	myQueue5->enqueue("E");
 
 	Queue<string> *myQueue6 = new Queue<string>();
-	myQueue6 = myQueue5;
+	*myQueue6 = *myQueue5;
 
 	cout << "Skriver ut kö myQueue5... " << endl;
 	for (int i = 5; i > 0; i--)
@@ -310,4 +438,132 @@ void test2()
 			cout << e << endl;
 		}
 	}
+
+	cout << "Skapar kö med 5 kapacitet och köar upp 5 element." << endl;
+	Queue<string> *myQueue7 = new Queue<string>();
+	myQueue7->enqueue("A");
+	myQueue7->enqueue("B");
+	myQueue7->enqueue("C");
+	myQueue7->enqueue("D");
+	myQueue7->enqueue("E");
+	cout << "Avköar två element och köar tre nya." << endl;
+	try
+	{
+		cout << myQueue7->dequeue() << endl;
+		cout << myQueue7->dequeue() << endl;
+	}
+	catch (char* e)
+	{
+		cout << e << endl;
+	}
+
+	myQueue7->enqueue("F");
+	myQueue7->enqueue("G");
+	myQueue7->enqueue("H");
+	cout << "Avköar alla element." << endl;
+	for (int i = 6; i > 0; i--)
+	{
+		try
+		{
+			cout << myQueue7->dequeue() << endl;
+		}
+		catch (char* e)
+		{
+			cout << e << endl;
+		}
+	}
+	cout << "Lägger in A till C i kön. " << endl;
+	Queue<string> *myQueue8 = new Queue<string>(3);
+	myQueue8->enqueue("A");
+	myQueue8->enqueue("B");
+	myQueue8->enqueue("C");
+
+	cout << "Dequeue:ar A" << endl;
+	try
+	{
+		cout << myQueue8->dequeue() << endl;
+	}
+	catch (char* e)
+	{
+		cout << e << endl;
+	}
+	cout << "Testar copy och sen dequeue:ar jag både myqueue8 och myqueue9 som ska visa samma." << endl;
+	Queue<string> myQueue9 = *myQueue8;
+	for (int i = 2; i > 0; i--)
+	{
+		try
+		{
+			cout << myQueue8->dequeue() << endl;
+		}
+		catch (char* e)
+		{
+			cout << e << endl;
+		}
+	}
+
+	for (int i = 2; i > 0; i--)
+	{
+		try
+		{
+			cout << myQueue9.dequeue() << endl;
+		}
+		catch (char* e)
+		{
+			cout << e << endl;
+		}
+	}
+
+	cout << "Lägger in A till C i kön. " << endl;
+	Queue<string> *myQueue10 = new Queue<string>(3);
+	myQueue10->enqueue("A");
+	myQueue10->enqueue("B");
+	myQueue10->enqueue("C");
+
+	cout << "Dequeue:ar A" << endl;
+	try
+	{
+		cout << myQueue10->dequeue() << endl;
+	}
+	catch (char* e)
+	{
+		cout << e << endl;
+	}
+	cout << "Testar tilldelning och sen dequeue:ar jag både myqueue8 och myqueue9 som ska visa samma." << endl;
+	Queue<string> *myQueue11 = new Queue<string>(4);
+	*myQueue11 = *myQueue10;
+	for (int i = 2; i > 0; i--)
+	{
+		try
+		{
+			cout << myQueue10->dequeue() << endl;
+		}
+		catch (char* e)
+		{
+			cout << e << endl;
+		}
+	}
+
+	for (int i = 2; i > 0; i--)
+	{
+		try
+		{
+			cout << myQueue11->dequeue() << endl;
+		}
+		catch (char* e)
+		{
+			cout << e << endl;
+		}
+	}
+
+	delete myQueue;
+	delete myQueue2;
+	delete myQueue3;
+	delete myQueue4;
+	delete myQueue5;
+	delete myQueue6;
+	delete myQueue7;
+	delete myQueue8;
+	delete myQueue10;
+	delete myQueue11;
+
 }
