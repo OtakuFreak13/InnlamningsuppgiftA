@@ -10,40 +10,89 @@ void test()
 	
 	housing->addHousing(111, "Tranbärsgatan 55, Hovdala", 4500, "House", 120, 5);
 	housing->addHousing(222, "Mortenstorget 33A, Lund", 8700, "Apartment", 100, 4);
-	cout << housing->toStringSpecific() << endl;
+	//cout << housing->toStringSpecific() << endl;
+	string *strArr = new string[housing->getElementsInArr()];
+	housing->toStringSpecific(strArr);
+	for (int i = 0; i < housing->getElementsInArr(); i++)
+	{
+		cout << strArr[i] << endl;
+	}
 	
 	cout << "Addar en till för att testa expand()" << endl;
 	housing->addHousing(333, "Ostindiefarargatan 10, Malmö", 5600, "Apartment", 75, 3);
-	cout << housing->toStringSpecific() << endl;
+	string *strArr2 = new string[housing->getElementsInArr()];
+	housing->toStringSpecific(strArr2);
+	for (int i = 0; i < housing->getElementsInArr(); i++)
+	{
+		cout << strArr2[i] << endl;
+	}
 	
 	cout << "Testar att ta bort något som inte finns" << endl;
 	housing->removeHousing(444);
-	cout << housing->toStringSpecific() << endl;
+	string *strArr3 = new string[housing->getElementsInArr()];
+	housing->toStringSpecific(strArr3);
+	for (int i = 0; i < housing->getElementsInArr(); i++)
+	{
+		cout << strArr3[i] << endl;
+	}
 	
 	cout << "Testar att ta bort något som finns " << endl;
 	housing->removeHousing(222);
-	cout << housing->toStringSpecific() << endl;
+	string *strArr4 = new string[housing->getElementsInArr()];
+	housing->toStringSpecific(strArr4);
+	for (int i = 0; i < housing->getElementsInArr(); i++)
+	{
+		cout << strArr4[i] << endl;
+	}
 
 	cout << "Tar bort de två kvarvarande bostäderna. Bör inte skriva ut något" << endl;
 	housing->removeHousing(111);
 	housing->removeHousing(333);
-	cout << housing->toStringSpecific() << endl;
+	string *strArr5 = new string[housing->getElementsInArr()];
+	housing->toStringSpecific(strArr5);
+	for (int i = 0; i < housing->getElementsInArr(); i++)
+	{
+		cout << strArr5[i] << endl;
+	}
 
 	cout << "Lägger till 2 nya emelent och skriver ut" << endl;
 	housing->addHousing(444, "Krisebergsgata 27, Malmö", 4000, "House", 70, 2);
 	housing->addHousing(555, "Lärkvägen 9, Sösdala", 4300, "House", 120, 6);
-	cout << housing->toStringSpecific() << endl;
+	string *strArr6 = new string[housing->getElementsInArr()];
+	housing->toStringSpecific(strArr6);
+	for (int i = 0; i < housing->getElementsInArr(); i++)
+	{
+		cout << strArr6[i] << endl;
+	}
 	
 	cout << "Testar kopieringskonstruktorn. Bör skriva ut samma som ovan: " << endl;
 	HousingRegister* housing2 = new HousingRegister(*housing);
-	cout << housing2->toStringSpecific() << endl;
+	string *strArr7 = new string[housing->getElementsInArr()];
+	housing->toStringSpecific(strArr7);
+	for (int i = 0; i < housing->getElementsInArr(); i++)
+	{
+		cout << strArr7[i] << endl;
+	}
 
 	cout << "Testar tilldelnings operatorn. Bör skriva ut samma som ovan: " << endl;
 	HousingRegister *housing3 = new HousingRegister(1);
 	*housing3 = *housing;
-	cout << housing3->toStringSpecific() << endl;
+	string *strArr8 = new string[housing->getElementsInArr()];
+	housing->toStringSpecific(strArr8);
+	for (int i = 0; i < housing->getElementsInArr(); i++)
+	{
+		cout << strArr8[i] << endl;
+	}
 
 	delete housing;
 	delete housing2;
 	delete housing3;
+	delete[] strArr;
+	delete[] strArr2;
+	delete[] strArr3;
+	delete[] strArr4;
+	delete[] strArr5;
+	delete[] strArr6;
+	delete[] strArr7;
+	delete[] strArr8;
 }

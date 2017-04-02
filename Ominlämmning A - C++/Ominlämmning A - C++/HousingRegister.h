@@ -20,16 +20,18 @@ public:
 	bool addHousing(const int id, const string adress, const int rent, const string houseType, const int livingSpace, const int rooms);
 	bool removeHousing(const int id);
 
-	string toStringSpecific()const;
+	void toStringSpecific(string *strArr)const;
 	//int checkRent(int maxRent)const;
-	string showHouseByRent(const int maxRent)const;
+	void showHouseByRent(const int maxRent, string *strArr)const;
 	//int findSpecificHousing(string type, int rooms)const;
-	string showSpecificHousing(const string type, const int rooms)const;
+	void showSpecificHousing(const string type, const int rooms, string *strArr)const;
 
 	bool checkId(const int id)const;
 	void changeHousingParameters(const int id, const int newId, const string newAdress, const int newRent, const string newHouseType, const int newLivingSpace, const int newRooms);
 	string HousingRegister::readFromFile(const string fileName);
 	void HousingRegister::writeToFile(const string filename);
+
+	int getElementsInArr()const;
 };
 
 

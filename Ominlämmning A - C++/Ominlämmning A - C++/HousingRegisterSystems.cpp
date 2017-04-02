@@ -95,7 +95,14 @@ void addNew1(HousingRegister* housing)
 
 void showAll2(HousingRegister* housing)
 {
-	cout<< housing->toStringSpecific() << endl;
+	//cout<< housing->toStringSpecific() << endl;
+	string *strArr = new string[housing->getElementsInArr()];
+	housing->toStringSpecific(strArr);
+	for (int i = 0; i < housing->getElementsInArr(); i++)
+	{
+		cout << strArr[i] << endl;
+	}
+	delete[] strArr;
 }
 
 void showAllByRent3(HousingRegister* housing)
@@ -103,7 +110,14 @@ void showAllByRent3(HousingRegister* housing)
 	cout << "Please input maximum rent. ";
 	int maxRent;
 	cin >> maxRent; cin.ignore();
-	cout << housing->showHouseByRent(maxRent) << endl;
+	// << housing->showHouseByRent(maxRent) << endl;
+	string *strArr = new string[housing->getElementsInArr()];
+	housing->showHouseByRent(maxRent, strArr);
+	for (int i = 0; i < housing->getElementsInArr(); i++)
+	{
+		cout << strArr[i] << endl;
+	}
+	delete[] strArr;
 }
 
 void showAllByType4(HousingRegister* housing)
@@ -114,7 +128,14 @@ void showAllByType4(HousingRegister* housing)
 	cout << "Please input number of rooms. ";
 	int nrRooms;
 	cin >> nrRooms; cin.ignore();
-	cout << housing->showSpecificHousing(housingType, nrRooms) << endl;
+	//cout << housing->showSpecificHousing(housingType, nrRooms) << endl;
+	string *strArr = new string[housing->getElementsInArr()];
+	housing->showSpecificHousing(housingType, nrRooms, strArr);
+	for (int i = 0; i < housing->getElementsInArr(); i++)
+	{
+		cout << strArr[i] << endl;
+	}
+	delete[] strArr;
 }
 
 void removeById5(HousingRegister* housing)

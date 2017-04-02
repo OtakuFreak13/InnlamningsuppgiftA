@@ -136,42 +136,36 @@ bool HousingRegister::removeHousing(const int id)
 	return removed;
 }
 
-string HousingRegister::toStringSpecific()const
+void HousingRegister::toStringSpecific(string *strArr)const
 {
-	string allHouses;
+	//string *allHouses;
 	for (int i = 0; i < this->elementsInArr; i++)
 	{
-		allHouses += this->housing[i]->toString() + "\n";
+		strArr[i] = this->housing[i]->toString() + "\n";
 	}
-	return allHouses;
+	//return *allHouses;
 }
 
-string HousingRegister::showHouseByRent(const int maxRent) const
+void HousingRegister::showHouseByRent(const int maxRent, string *strArr) const
 {
-	string housesByRent;
 	for (int i = 0; i < this->elementsInArr; i++)
 	{
 		if (maxRent >= this->housing[i]->getRent())
 		{
-			housesByRent += this->housing[i]->toString() + "\n";
+			strArr[i] = this->housing[i]->toString() + "\n";
 		}
 	}
-	return housesByRent;
 }
 
-string HousingRegister::showSpecificHousing(const string type, const int rooms) const
+void HousingRegister::showSpecificHousing(const string type, const int rooms, string *strArr) const
 {
-	string specificHousing;
-
 	for (int i = 0; i < this->elementsInArr; i++)
 	{
 		if (type == this->housing[i]->getHouseType() && rooms == this->housing[i]->getRooms())
 		{
-			specificHousing += this->housing[i]->toString() + "\n";
+			strArr[i] = this->housing[i]->toString() + "\n";
 		}
 	}
-
-	return specificHousing;
 }
 
 bool HousingRegister::checkId(const int id)const
@@ -265,4 +259,9 @@ void HousingRegister::writeToFile(const string filename)
 		out << this->housing[i]->getRooms() << endl;
 	}
 	out.close();
+}
+
+int HousingRegister::getElementsInArr() const
+{
+	return this->elementsInArr;
 }
